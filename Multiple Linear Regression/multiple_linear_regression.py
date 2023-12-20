@@ -9,16 +9,16 @@ import pandas as pd
 dataset = pd.read_csv('50_Startups.csv')
 X = dataset.iloc[:, :-1].values
 y = dataset.iloc[:, -1].values
-print(X)
+#print(X)
 
 # Encoding categorical data
 from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import OneHotEncoder
 ct = ColumnTransformer(transformers=[('encoder', OneHotEncoder(), [3])], remainder='passthrough')
-X = ct.fit_transform(X)
+X =np.array( ct.fit_transform(X))
 #Avoiding  The Dummy Variable trap
 #X=X[:,1:] to make not select 1st column but we don't make this manually b/c there library that handle this
-print(X)
+#print(X)
 from sklearn.model_selection import train_test_split
 
 # Assuming X and Y are your feature and target variables
@@ -27,3 +27,7 @@ from sklearn.linear_model import LinearRegression
 regressor=LinearRegression()
 regressor.fit(X_train,y_train)
 y_predict=regressor.predict(X_test)
+np.set_printoptions(precision=2)
+print(np.concatenate((y_predict.reshape(len(y_predict),1), y_test.reshape(len(y_test),1 )),1))
+#import statsmodels.formula.api as sm
+#X=np.append(arr=X,values=np.ones((50,1)).astype(int))
