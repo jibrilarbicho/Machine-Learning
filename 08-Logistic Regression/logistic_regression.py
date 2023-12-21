@@ -20,9 +20,12 @@ from sklearn.preprocessing import StandardScaler
 sc = StandardScaler()
 X_train = sc.fit_transform(X_train)
 X_test = sc.transform(X_test)
-print(X_train)
-print(X_test)
 
-from sklearn.linear_model import LinearRegression
-classfier=LinearRegression(random_state=0)
-classfier.fit(X_train,y_train)
+
+from sklearn.linear_model import LogisticRegression
+classifier=LogisticRegression()
+classifier.fit(X_train,y_train)
+#print(classifier.predict(sc.transform([[30,87000]])))
+# Predicting the Test set results
+y_pred = classifier.predict(X_test)
+print(np.concatenate((y_pred.reshape(len(y_pred),1), y_test.reshape(len(y_test),1)),1))
