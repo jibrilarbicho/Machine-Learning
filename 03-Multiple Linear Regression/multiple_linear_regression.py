@@ -31,3 +31,5 @@ np.set_printoptions(precision=2)
 print(np.concatenate((y_predict.reshape(len(y_predict),1), y_test.reshape(len(y_test),1 )),1))
 #import statsmodels.formula.api as sm
 #X=np.append(arr=X,values=np.ones((50,1)).astype(int))
+from sklearn.metrics import r2_score
+print(r2_score(y_test,y_predict))

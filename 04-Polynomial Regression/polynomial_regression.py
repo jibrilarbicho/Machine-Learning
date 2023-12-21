@@ -37,3 +37,5 @@ plt.xlabel('Position level')
 plt.ylabel('Salary')
 plt.show()
 t=lin_reg2.predict(poly_reg.fit_transform([[6.5]]))
+from sklearn.metrics import r2_score
+print(r2_score(y,lin_reg2.predict(X_poly)))
